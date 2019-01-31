@@ -1,0 +1,19 @@
+---
+- cron:
+    name: "Run minecore server"
+    job: "/home/minecore/start.sh > /dev/null 2>&1"
+    user: minecore
+
+- name: Setting permissions on minecore folder
+  file:
+    path: /home/minecore
+    owner: minecore
+    group: minecore
+    mode: 0744
+    recurse: yes
+
+- name: Changing permissions of "/home/minecore/start.sh" and adding executable bit "+x"
+  file: dest=/home/minecore/start.sh mode=a+x
+
+- name: Changing permissions of "/home/minecore/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/minecore/rtoolkit.sh mode=a+x

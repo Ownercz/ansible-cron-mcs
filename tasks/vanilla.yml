@@ -1,0 +1,21 @@
+---
+- cron:
+    name: "Run vanilla mc server"
+    job: "/home/vanilla/start.sh > /dev/null 2>&1"
+    user: vanilla
+
+
+- name: Setting permissions on vanilla folder
+  file:
+    path: /home/vanilla
+    owner: vanilla
+    group: vanilla
+    mode: 0744
+    recurse: yes
+  ignore_errors: true
+    
+- name: Changing permissions of "/home/vanilla/start.sh" and adding executable bit "+x"
+  file: dest=/home/vanilla/start.sh mode=a+x
+
+- name: Changing permissions of "/home/vanilla/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/vanilla/rtoolkit.sh mode=a+x

@@ -1,0 +1,27 @@
+
+- include: minecorebungeecord.yml
+  when: "'vps05' in inventory_hostname_short"
+
+- include: pvpcorebungeecord.yml
+  when: "'vps02' in inventory_hostname_short"
+
+- include: tekkitcorebungeecord.yml
+  when: "'vps03' in inventory_hostname_short"
+
+- include: survival.yml
+  when: "'app01' in inventory_hostname_short"
+
+- include: lobby.yml
+  when: "'app02' in inventory_hostname_short"
+
+- include: vanilla.yml
+  when: "'app03' in inventory_hostname_short"
+
+- include: development.yml
+  when: "'app04' in inventory_hostname_short"
+
+- include: tekkitcore.yml
+  when: "'app05' in inventory_hostname_short"
+
+- include: pvp.yml
+  when: "'app08' in inventory_hostname_short"

@@ -1,0 +1,20 @@
+---
+- cron:
+    name: "Run development mc server"
+    job: "/home/development/start.sh > /dev/null 2>&1"
+    user: development
+
+- name: Setting permissions on development folder
+  file:
+    path: /home/development
+    owner: development
+    group: development
+    mode: 0744
+    recurse: yes
+  ignore_errors: true
+  
+- name: Changing permissions of "/home/development/start.sh" and adding executable bit "+x"
+  file: dest=/home/development/start.sh mode=a+x
+
+- name: Changing permissions of "/home/development/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/development/rtoolkit.sh mode=a+x

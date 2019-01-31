@@ -1,0 +1,19 @@
+
+- cron:
+    name: "Run tekkit server"
+    job: "/home/tekkitcore/start.sh > /dev/null 2>&1"
+    user: tekkitcore
+
+- name: Setting permissions on tekkitcore folder
+  file:
+    path: /home/tekkitcore
+    owner: tekkitcore
+    group: tekkitcore
+    mode: 0744
+    recurse: yes
+    
+- name: Changing permissions of "/home/tekkitcore/start.sh" and adding executable bit "+x"
+  file: dest=/home/tekkitcore/start.sh mode=a+x
+
+- name: Changing permissions of "/home/tekkitcore/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/tekkitcore/rtoolkit.sh mode=a+x

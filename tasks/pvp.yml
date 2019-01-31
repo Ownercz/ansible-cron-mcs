@@ -1,0 +1,39 @@
+---
+- cron:
+    name: "Run pvp mc server"
+    job: "/home/pvp/start.sh > /dev/null 2>&1"
+    user: pvp
+#    state: absent
+- name: Setting permissions on pvp folder
+  file:
+    path: /home/pvp
+    owner: pvp
+    group: pvp
+    mode: 0744  
+    recurse: yes  
+  ignore_errors: true  
+- name: Changing permissions of "/home/pvp/start.sh" and adding executable bit "+x"
+  file: dest=/home/pvp/start.sh mode=a+x
+
+- name: Changing permissions of "/home/pvp/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/pvp/rtoolkit.sh mode=a+x
+  
+  
+- cron:
+    name: "Run lobby mc server"
+    job: "/home/lobby/start.sh > /dev/null 2>&1"
+    user: lobby
+#    state: absent
+- name: Setting permissions on lobby folder
+  file:
+    path: /home/lobby
+    owner: lobby
+    group: lobby
+    mode: 0744  
+    recurse: yes 
+  ignore_errors: true 
+- name: Changing permissions of "/home/lobby/start.sh" and adding executable bit "+x"
+  file: dest=/home/lobby/start.sh mode=a+x
+
+- name: Changing permissions of "/home/lobby/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/lobby/rtoolkit.sh mode=a+x  

@@ -1,0 +1,20 @@
+
+- cron:
+    name: "Run pvpcore server"
+    job: "/home/pvpcore/start.sh > /dev/null 2>&1"
+    user: pvpcore
+
+
+- name: Setting permissions on pvpcore folder
+  file:
+    path: /home/pvpcore
+    owner: pvpcore
+    group: pvpcore
+    mode: 0744
+    recurse: yes
+    
+- name: Changing permissions of "/home/pvpcore/start.sh" and adding executable bit "+x"
+  file: dest=/home/pvpcore/start.sh mode=a+x
+
+- name: Changing permissions of "/home/pvpcore/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/pvpcore/rtoolkit.sh mode=a+x

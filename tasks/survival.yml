@@ -1,0 +1,21 @@
+---
+- cron:
+    name: "Run survival mc server"
+    job: "/home/survival/start.sh > /dev/null 2>&1"
+    user: survival
+
+
+- name: Setting permissions on survival folder
+  file:
+    path: /home/survival
+    owner: survival
+    group: survival
+    mode: 0744
+    recurse: yes
+  ignore_errors: true
+
+- name: Changing permissions of "/home/survival/start.sh" and adding executable bit "+x"
+  file: dest=/home/survival/start.sh mode=a+x
+
+- name: Changing permissions of "/home/survival/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/survival/rtoolkit.sh mode=a+x

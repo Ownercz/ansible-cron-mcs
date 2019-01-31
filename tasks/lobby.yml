@@ -1,0 +1,40 @@
+---
+- cron:
+    name: "Run lobby mc server"
+    job: "/home/lobby/start.sh > /dev/null 2>&1"
+    user: lobby
+
+- name: Setting permissions on survival folder
+  file:
+    path: /home/lobby
+    owner: lobby
+    group: lobby
+    mode: 0744
+    recurse: yes
+  ignore_errors: true
+
+- name: Changing permissions of "/home/lobby/start.sh" and adding executable bit "+x"
+  file: dest=/home/lobby/start.sh mode=a+x
+
+- name: Changing permissions of "/home/lobby/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/lobby/rtoolkit.sh mode=a+x
+
+- cron:
+    name: "Run creative mc server"
+    job: "/home/creative/start.sh > /dev/null 2>&1"
+    user: creative
+
+- name: Setting permissions on creative folder
+  file:
+    path: /home/creative
+    owner: creative
+    group: creative
+    mode: 0744
+    recurse: yes
+  ignore_errors: true
+
+- name: Changing permissions of "/home/creative/start.sh" and adding executable bit "+x"
+  file: dest=/home/creative/start.sh mode=a+x
+
+- name: Changing permissions of "/home/creative/rtoolkit.sh" and adding executable bit "+x"
+  file: dest=/home/creative/rtoolkit.sh mode=a+x
